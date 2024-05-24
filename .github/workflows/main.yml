@@ -7,6 +7,7 @@ permissions:
 
 env:
   NUXT_PUBLIC_API_BASE: https://crypto360.kg/api/
+  NUXT_APP_BASE_URL: /prefix/
   
 jobs:
   build-and-deploy:
