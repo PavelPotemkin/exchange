@@ -1,9 +1,11 @@
 name: Deploy to GitHub Pages
+
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +16,11 @@ jobs:
         with:
           node-version: "20"
       - run: npm ci
-      - run: NUXT_PUBLIC_API_BASE=https://crypto360.kg/api/ npx nuxt build --preset github_pages
+      - run: npm run build
+        env:
+          NITRO_PRESET: github_pages
+          NUXT_PUBLIC_API_BASE: https://crypto360.kg/api/
+          NUXT_APP_BASE_URL: /exchange/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
