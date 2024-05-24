@@ -16,8 +16,18 @@ export const useApi = () => {
     }
 
     try {
-      const result = await apiInstance<T>(url, options)
-      return right(result)
+      let statusCode: number = 0
+      const result = await apiInstance<T>(url, {
+        ...options,
+        onResponse: (response) => {
+          statusCode = response.response.status
+        },
+      })
+
+      return right({
+        data: result,
+        statusCode,
+      })
     }
     catch (error) {
       return left(getApiError(error))

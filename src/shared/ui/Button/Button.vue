@@ -18,8 +18,8 @@ defineSlots<{
 
 <template>
   <button
-    class="button"
-    :class="`button_variant_${props.variant} button_size_${props.size}`"
+    class="ui-button"
+    :class="`ui-button_variant_${props.variant} ui-button_size_${props.size}`"
   >
     <slot>
       {{ text }}
@@ -28,7 +28,7 @@ defineSlots<{
 </template>
 
 <style lang="scss">
-.button {
+.ui-button {
   &_variant {
     &_primary {
       color: $text-invert;

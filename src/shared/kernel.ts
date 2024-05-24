@@ -19,6 +19,16 @@ export type ApiResult<T> = Promise<Either<
   NetworkError |
   NetworkServerError |
   NetworkBadRequestError,
+  {
+    data: T
+    statusCode: number
+  }
+>>
+
+export type ApiResultUnwrapped<T> = Promise<Either<
+  NetworkError |
+  NetworkServerError |
+  NetworkBadRequestError,
   T
 >>
 
@@ -29,4 +39,5 @@ export type Events = {
     minLimit: string
     currency: string
   } | undefined
+  [BUS_EVENTS.EXCHANGE_RATES_OUTDATED]: undefined
 }

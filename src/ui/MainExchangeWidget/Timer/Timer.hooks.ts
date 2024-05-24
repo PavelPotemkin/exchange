@@ -1,9 +1,10 @@
-import { useRefresh, useStartTimer } from '~/src/application/exchange'
+import { useExchangesRatesOutdated, useRefresh, useStartTimer } from '~/src/application/exchange'
 import type { EventBusService } from '~/src/application/ports'
 import { useEventBusService } from '~/src/services/bus'
 import { BUS_EVENTS } from '~/src/shared/lib/constants'
 
 export const useTimer = () => {
+  const { outdated } = useExchangesRatesOutdated()
   const eventBusService: EventBusService = useEventBusService()
   const { startTimer, stopTimer, timerFormatted } = useStartTimer()
   const refresh = useRefresh()
@@ -17,10 +18,15 @@ export const useTimer = () => {
     refresh()
   })
 
+  eventBusService.subscribe(BUS_EVENTS.EXCHANGE_RATES_OUTDATED, () => {
+    stopTimer()
+  })
+
   onMounted(startTimer)
   onUnmounted(stopTimer)
 
   return {
     timerFormatted,
+    outdated,
   }
 }

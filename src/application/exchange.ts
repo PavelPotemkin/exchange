@@ -72,9 +72,14 @@ export const useStartTimer = () => {
   }
 
   const startTimer = () => {
-    exchangeStorageService.updateExchangeLastUpdateTime(createLastUpdateTime())
+    if (exchangeStorageService.exchangeRatesOutdated.value) {
+      return
+    }
 
-    timer = setInterval(() => onTimerTick(), 1000)
+    exchangeStorageService.updateExchangeLastUpdateTime(createLastUpdateTime())
+    timer = setInterval(() => {
+      onTimerTick()
+    }, 1000)
   }
 
   const stopTimer = () => {
@@ -241,5 +246,22 @@ export const useRefresh = () => {
 
     exchangeStorageService.updateExchangeCalculationResult(calculateResult.value)
     eventBusService.emit(BUS_EVENTS.EXCHANGE_INFO_UPDATED, undefined)
+  }
+}
+
+export const useExchangesRatesOutdated = () => {
+  const exchangeStorageService: ExchangeStorageService = useExchangeStorageService()
+  const refresh = useRefresh()
+
+  const reload = () => {
+    exchangeStorageService.updateExchangeRatesOutdated(false)
+    refresh()
+  }
+
+  const outdated = computed(() => exchangeStorageService.exchangeRatesOutdated.value)
+
+  return {
+    outdated,
+    reload,
   }
 }

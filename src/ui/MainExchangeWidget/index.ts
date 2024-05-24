@@ -1,1 +1,1 @@
-export { default as MainExchangeWidget } from './MainExchangeWidget.vue'
+export { MainExchangeWidgetPage } from './Page'

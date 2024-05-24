@@ -1,6 +1,7 @@
-import { useActiveCurrenciesInfo, useCurrenciesOptions, useChangeToCurrency } from '~/src/application/exchange'
+import { useActiveCurrenciesInfo, useCurrenciesOptions, useChangeToCurrency, useExchangesRatesOutdated } from '~/src/application/exchange'
 
 export const useToInput = () => {
+  const { outdated } = useExchangesRatesOutdated()
   const activeCurrenciesInfo = useActiveCurrenciesInfo()
   const currenciesOptions = useCurrenciesOptions()
   const changeToCurrency = useChangeToCurrency()
@@ -19,6 +20,7 @@ export const useToInput = () => {
   const toCurrenciesOptions = computed(() => currenciesOptions.value.to)
 
   return {
+    outdated,
     amount,
     activeIdModel,
     toCurrenciesOptions,

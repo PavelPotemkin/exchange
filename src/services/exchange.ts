@@ -1,8 +1,9 @@
 import type { ICurrencyId } from '../domain/currency'
 import { useApi } from './api'
-import { API_URLS } from '~/src/shared/lib/constants'
+import { useEventBusService } from './bus'
+import { API_URLS, BUS_EVENTS } from '~/src/shared/lib/constants'
 import { createWithAbort } from '~/src/shared/lib/abort'
-import type { ExchangeApiService } from '~/src/application/ports'
+import type { EventBusService, ExchangeApiService } from '~/src/application/ports'
 
 interface IApiExchangeCalculationResult {
   amount?: string
@@ -19,7 +20,7 @@ interface IApiExchangeCalculationResult {
 
 export const useExchangeApiService = (): ExchangeApiService => {
   const api = useApi()
-
+  const eventBusService: EventBusService = useEventBusService()
   const abortableCalculatorCall = createWithAbort()
 
   return {
@@ -33,18 +34,25 @@ export const useExchangeApiService = (): ExchangeApiService => {
             currency_to_id: payload.currencyToId,
           },
           signal,
-        })).mapRight(res => ({
-          amount: res.amount,
-          amountFrom: res.amount_from,
-          currencyFromId: res.currency_from_id as ICurrencyId,
-          currencyToId: res.currency_to_id as ICurrencyId,
-          fee: {
-            amount: res.fee.amount,
-            percent: res.fee.percent,
-            basePercent: res.fee.base_percent,
-          },
-          rate: res.rate,
-        }))
+        })).mapRight((res) => {
+          const status = res.statusCode
+          if (status === 206) {
+            eventBusService.emit(BUS_EVENTS.EXCHANGE_RATES_OUTDATED, undefined)
+          }
+
+          return {
+            amount: res.data.amount,
+            amountFrom: res.data.amount_from,
+            currencyFromId: res.data.currency_from_id as ICurrencyId,
+            currencyToId: res.data.currency_to_id as ICurrencyId,
+            fee: {
+              amount: res.data.fee.amount,
+              percent: res.data.fee.percent,
+              basePercent: res.data.fee.base_percent,
+            },
+            rate: res.data.rate,
+          }
+        })
       })
     },
   }

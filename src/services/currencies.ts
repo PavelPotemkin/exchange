@@ -37,7 +37,7 @@ export const useCurrenciesApiService = (): CurrenciesApiService => {
     async getAll() {
       return (
         await api<Array<IApiCurrency>>(API_URLS.CURRENCIES_LIST)
-      ).mapRight(currencies => currencies.map((currency) => {
+      ).mapRight(res => res.data.map((currency) => {
         return {
           id: currency.id,
           name: currency.name,

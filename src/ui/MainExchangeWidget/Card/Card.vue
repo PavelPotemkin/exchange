@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { MainExchangeWidgetTimer } from './Timer'
-import { MainExchangeWidgetDetails } from './Details'
-import { MainExchangeWidgetRateText } from './RateText'
-import { MainExchangeWidgetSwapButton } from './SwapButton'
-import { MainExchangeWidgetDealButton } from './DealButton'
-import { MainExchangeWidgetFromInput } from './FromInput'
-import { MainExchangeWidgetToInput } from './ToInput'
+import { MainExchangeWidgetTimer } from '../Timer'
+import { MainExchangeWidgetDetails } from '../Details'
+import { MainExchangeWidgetRateText } from '../RateText'
+import { MainExchangeWidgetSwapButton } from '../SwapButton'
+import { MainExchangeWidgetDealButton } from '../DealButton'
+import { MainExchangeWidgetFromInput } from '../FromInput'
+import { MainExchangeWidgetToInput } from '../ToInput'
 </script>
 
 <template>
-  <div class="main-exchange-widget">
+  <div class="main-exchange-widget-card">
     <MainExchangeWidgetTimer />
 
     <MainExchangeWidgetFromInput />
 
-    <div class="main-exchange-widget__rate-and-button">
+    <div class="main-exchange-widget-card__rate-and-button">
       <MainExchangeWidgetRateText />
 
       <MainExchangeWidgetSwapButton />
@@ -29,8 +29,9 @@ import { MainExchangeWidgetToInput } from './ToInput'
 </template>
 
 <style scoped lang="scss">
-.main-exchange-widget {
+.main-exchange-widget-card {
   width: 100%;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
   gap: $gap-xl;

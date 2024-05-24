@@ -3,6 +3,7 @@ import { useFromInput } from './FromInput.hooks'
 import { UiExchangeToken } from '~/src/shared/ui'
 
 const {
+  outdated,
   activeIdModel,
   amountModel,
   fromCurrenciesOptions,
@@ -15,7 +16,7 @@ const {
     v-model:active-id="activeIdModel"
     v-model:amount="amountModel"
     :options="fromCurrenciesOptions"
-    :disabled="false"
+    :disabled="outdated"
     label="Вы отправляете"
     placeholder="10 000"
   >

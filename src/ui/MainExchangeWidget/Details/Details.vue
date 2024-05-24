@@ -2,9 +2,7 @@
 import { useDetails } from './Details.hooks'
 import { UiDisabledGradient } from '~/src/shared/ui'
 
-const { isOpen, exchange, rate, comission } = useDetails()
-
-const disabled = false
+const { outdated, isOpen, exchange, rate, comission } = useDetails()
 </script>
 
 <template>
@@ -21,7 +19,7 @@ const disabled = false
         </span>
 
         <UiDisabledGradient
-          v-if="disabled"
+          v-if="outdated"
           :height="16"
           :width="180"
         />
@@ -47,7 +45,7 @@ const disabled = false
       <button
         class="main-exchage-widget-details__toggle-btn"
         type="button"
-        :disabled="disabled"
+        :disabled="outdated"
         @click="isOpen = !isOpen"
       >
         <span>
@@ -74,7 +72,7 @@ const disabled = false
     </div>
 
     <div
-      v-if="isOpen && !disabled"
+      v-if="isOpen && !outdated"
       class="main-exchage-widget-details__list"
     >
       <div class="main-exchage-widget-details__list-item">

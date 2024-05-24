@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
   <div
-    class="disabled-gradient"
+    class="ui-disabled-gradient"
     :style="{
       width: `${width}px`,
       height: `${height}px`,
@@ -16,7 +16,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-.disabled-gradient {
+.ui-disabled-gradient {
   background: linear-gradient(90deg, #E1E1E1 0%, #EFEFEF 100%);
   border-radius: 999px;
 }

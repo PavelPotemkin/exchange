@@ -7,12 +7,14 @@ const useStore = defineStore('storage', () => {
   const exchangeState = ref<IExchangeState | null>(null)
   const exchangeCalculationResult = ref<IExchangeCalculationResult | null>(null)
   const exchangeLastUpdateTime = ref<DateString | null>(null)
+  const exchangeRatesOutdated = ref<boolean>(false)
 
   return {
     currencies,
     exchangeState,
     exchangeCalculationResult,
     exchangeLastUpdateTime,
+    exchangeRatesOutdated,
   }
 })
 
@@ -35,6 +37,10 @@ export const useExchangeStorageService = (): ExchangeStorageService => {
     exchangeLastUpdateTime: computed(() => state.exchangeLastUpdateTime.value),
     updateExchangeLastUpdateTime(time) {
       state.exchangeLastUpdateTime.value = time
+    },
+    exchangeRatesOutdated: computed(() => state.exchangeRatesOutdated.value),
+    updateExchangeRatesOutdated(outdated) {
+      state.exchangeRatesOutdated.value = outdated
     },
   }
 }

@@ -1,4 +1,4 @@
-import { useUpdateAmount, useChangeFromCurrency, useActiveCurrenciesInfo, useCurrenciesOptions } from '~/src/application/exchange'
+import { useUpdateAmount, useChangeFromCurrency, useActiveCurrenciesInfo, useCurrenciesOptions, useExchangesRatesOutdated } from '~/src/application/exchange'
 import type { EventBusService } from '~/src/application/ports'
 import { getExchangeAmount } from '~/src/domain/exchange'
 import { useEventBusService } from '~/src/services/bus'
@@ -11,6 +11,7 @@ export const useFromInput = () => {
   const { exchangeState } = useExchangeStorageService()
   const activeCurrenciesInfo = useActiveCurrenciesInfo()
   const currenciesOptions = useCurrenciesOptions()
+  const { outdated } = useExchangesRatesOutdated()
   const exchangeUpdateAmount = useUpdateAmount()
   const changeFromCurrency = useChangeFromCurrency()
 
@@ -43,6 +44,7 @@ export const useFromInput = () => {
   })
 
   return {
+    outdated,
     activeIdModel,
     amountModel,
     fromCurrenciesOptions,

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useTimer } from './Timer.hooks'
 
-const { timerFormatted } = useTimer()
+const { timerFormatted, outdated } = useTimer()
 </script>
 
 <template>
   <div class="main-exchage-widget-timer">
     <div
-      v-if="false"
+      v-if="outdated"
       class="main-exchage-widget-timer__disabled-text"
     >
       Обновление курса недоступно

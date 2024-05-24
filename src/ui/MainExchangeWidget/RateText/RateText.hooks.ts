@@ -1,6 +1,7 @@
-import { useActiveCurrenciesInfo } from '~/src/application/exchange'
+import { useActiveCurrenciesInfo, useExchangesRatesOutdated } from '~/src/application/exchange'
 
 export const useRateText = () => {
+  const { outdated } = useExchangesRatesOutdated()
   const activeCurrenciesInfo = useActiveCurrenciesInfo()
 
   const rateText = computed(() => {
@@ -12,6 +13,7 @@ export const useRateText = () => {
   })
 
   return {
+    outdated,
     rateText,
   }
 }

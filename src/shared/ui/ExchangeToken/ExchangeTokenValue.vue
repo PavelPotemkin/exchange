@@ -21,13 +21,13 @@ const isLabelFullCoveder = computed(() => model.value === null && !focused.value
 
 <template>
   <label
-    class="exchange-token-value"
+    class="ui-exchange-token-value"
     :class="{
-      'exchange-token-value_full-cover': isLabelFullCoveder && !disabled,
-      'exchange-token-value_disabled': disabled,
+      'ui-exchange-token-value_full-cover': isLabelFullCoveder && !disabled,
+      'ui-exchange-token-value_disabled': disabled,
     }"
   >
-    <span class="exchange-token-value__label">
+    <span class="ui-exchange-token-value__label">
       {{ label }}
     </span>
 
@@ -44,18 +44,18 @@ const isLabelFullCoveder = computed(() => model.value === null && !focused.value
       type="number"
       :placeholder="props.placeholder"
       :disabled="disabled || readonly"
-      class="exchange-token-value__input"
+      class="ui-exchange-token-value__input"
     >
 
     <div
       v-if="focused"
-      class="exchange-token-value__underline"
+      class="ui-exchange-token-value__underline"
     />
   </label>
 </template>
 
 <style lang="scss">
-.exchange-token-value {
+.ui-exchange-token-value {
   position: relative;
   height: 80px;
   padding: $padding-none $padding-xl;
@@ -69,16 +69,16 @@ const isLabelFullCoveder = computed(() => model.value === null && !focused.value
   overflow: hidden;
   cursor: text;
 
-  &:not(.exchange-token-value_disabled):hover {
+  &:not(.ui-exchange-token-value_disabled):hover {
     background-color: $surface-secondary-hover;
   }
 
   &_full-cover {
-    & .exchange-token-value__label {
+    & .ui-exchange-token-value__label {
     @include title;
     }
 
-    & .exchange-token-value__input {
+    & .ui-exchange-token-value__input {
       height: 0;
     }
   }

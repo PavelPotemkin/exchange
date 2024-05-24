@@ -1,5 +1,5 @@
 import type { IExchangeCalculationResult, IExchangeState } from '~/src/domain/exchange'
-import type { ApiResult, Events } from '~/src/shared/kernel'
+import type { ApiResultUnwrapped, Events } from '~/src/shared/kernel'
 import type { ICurrencies } from '~/src/domain/currency'
 
 export interface ExchangeStorageService {
@@ -11,14 +11,16 @@ export interface ExchangeStorageService {
   updateExchangeCalculationResult(result: IExchangeCalculationResult): void
   exchangeLastUpdateTime: ComputedRef<DateString | null>
   updateExchangeLastUpdateTime(time: DateString): void
+  exchangeRatesOutdated: ComputedRef<boolean>
+  updateExchangeRatesOutdated(outdated: boolean): void
 }
 
 export interface CurrenciesApiService {
-  getAll(): ApiResult<ICurrencies>
+  getAll(): ApiResultUnwrapped<ICurrencies>
 }
 
 export interface ExchangeApiService {
-  calculate(payload: IExchangeState): ApiResult<IExchangeCalculationResult>
+  calculate(payload: IExchangeState): ApiResultUnwrapped<IExchangeCalculationResult>
 }
 
 export interface EventBusService {

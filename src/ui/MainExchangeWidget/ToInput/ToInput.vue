@@ -2,9 +2,8 @@
 import { useToInput } from './ToInput.hooks'
 import { UiExchangeToken } from '~/src/shared/ui'
 
-const disabled = ref(false)
-
 const {
+  outdated,
   amount,
   activeIdModel,
   toCurrenciesOptions,
@@ -16,9 +15,9 @@ const {
     v-model:active-id="activeIdModel"
     :amount="amount"
     :options="toCurrenciesOptions"
-    :disabled="disabled"
+    :disabled="outdated"
     label="Вы получаете"
-    placeholder="10 000"
+    placeholder="~0"
     readonly
   />
 </template>

@@ -1,13 +1,14 @@
-import { useActiveCurrenciesInfo } from '~/src/application/exchange'
+import { useActiveCurrenciesInfo, useExchangesRatesOutdated } from '~/src/application/exchange'
 import { formatAmount } from '~/src/shared/lib/utils'
 
 export const useDetails = () => {
+  const { outdated } = useExchangesRatesOutdated()
   const activeCurrenciesInfo = useActiveCurrenciesInfo()
   const isOpen = ref(false)
 
   const exchange = computed(() => ({
     from: `${formatAmount(activeCurrenciesInfo.value.from.amount || 0)} ${activeCurrenciesInfo.value.from.data.code}`,
-    to: `${formatAmount(activeCurrenciesInfo.value.to.amount || 0)} ${activeCurrenciesInfo.value.to.data.code}`
+    to: `${formatAmount(activeCurrenciesInfo.value.to.amount || 0)} ${activeCurrenciesInfo.value.to.data.code}`,
   }))
 
   const rate = computed(() => ({
@@ -21,6 +22,7 @@ export const useDetails = () => {
   }))
 
   return {
+    outdated,
     isOpen,
     exchange,
     rate,

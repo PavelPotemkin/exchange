@@ -2,12 +2,12 @@
 import { useRateText } from './RateText.hooks'
 import { UiDisabledGradient } from '~/src/shared/ui'
 
-const { rateText } = useRateText()
+const { rateText, outdated } = useRateText()
 </script>
 
 <template>
   <UiDisabledGradient
-    v-if="false"
+    v-if="outdated"
     :width="180"
     :height="20"
   />
