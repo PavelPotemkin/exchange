@@ -85,12 +85,11 @@ export const swapCurrencies = (
 }
 
 export const getActiveCurrenciesInfo = (
-  exchangeState: IExchangeState,
   exchangeCalculationResult: IExchangeCalculationResult,
   currencies: ICurrencies,
 ) => {
-  const currencyFrom = getCurrencyById(exchangeState.currencyFromId, currencies)
-  const currencyTo = getCurrencyById(exchangeState.currencyToId, currencies)
+  const currencyFrom = getCurrencyById(exchangeCalculationResult.currencyFromId, currencies)
+  const currencyTo = getCurrencyById(exchangeCalculationResult.currencyToId, currencies)
 
   if (!currencyFrom || !currencyTo) {
     throw new Error('Currency not found')

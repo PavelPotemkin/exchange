@@ -211,13 +211,13 @@ export const useChangeToCurrency = () => {
 }
 
 export const useActiveCurrenciesInfo = () => {
-  const { exchangeCalculationResult, exchangeState, currencies } = useExchangeStorageService()
+  const { exchangeCalculationResult, currencies } = useExchangeStorageService()
 
-  return computed(() => getActiveCurrenciesInfo(exchangeState.value!, exchangeCalculationResult.value!, currencies.value!))
+  return computed(() => getActiveCurrenciesInfo(exchangeCalculationResult.value!, currencies.value!))
 }
 
 export const useCurrenciesOptions = () => {
-  const { exchangeState, currencies } = useExchangeStorageService()
+  const { exchangeCalculationResult, currencies } = useExchangeStorageService()
 
   const fromCurrencyToExchangeTokenOption = (currency: ICurrency) => ({
     id: currency.id,
@@ -228,8 +228,8 @@ export const useCurrenciesOptions = () => {
   })
 
   return computed(() => ({
-    from: getSameTypeCurrenciesById(exchangeState.value!.currencyFromId, currencies.value!).map(fromCurrencyToExchangeTokenOption),
-    to: getSameTypeCurrenciesById(exchangeState.value!.currencyToId, currencies.value!).map(fromCurrencyToExchangeTokenOption),
+    from: getSameTypeCurrenciesById(exchangeCalculationResult.value!.currencyFromId, currencies.value!).map(fromCurrencyToExchangeTokenOption),
+    to: getSameTypeCurrenciesById(exchangeCalculationResult.value!.currencyToId, currencies.value!).map(fromCurrencyToExchangeTokenOption),
   }))
 }
 
