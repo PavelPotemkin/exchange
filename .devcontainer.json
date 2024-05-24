@@ -1,0 +1,26 @@
+{
+  "name": "exchange-test-task",
+  "dockerComposeFile": "./docker-compose.yml",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "Vue.volar"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/bin/zsh"
+          }
+        }
+      }
+    }
+  },
+  "service": "front",
+  "workspaceFolder": "/app",
+  "shutdownAction": "none",
+  "onCreateCommand": "sh -c \"$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)\" -- -t robbyrussell && apk add git openssh-client"
+}

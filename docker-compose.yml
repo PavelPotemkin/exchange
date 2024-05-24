@@ -1,0 +1,17 @@
+services:
+  front:
+    build:
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./:/app
+      - node_modules:/app/node_modules
+    environment:
+      - PORT=${PORT}
+      - NUXT_PUBLIC_API_BASE=${API_BASE}
+    ports:
+      - ${PORT}:${PORT}
+    command: npm run dev
+
+volumes:
+  node_modules:

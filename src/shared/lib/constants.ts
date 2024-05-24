@@ -1,0 +1,10 @@
+export const API_URLS = {
+  CURRENCIES_LIST: '/currencies',
+  EXCHANGE_CALCULATE: '/exchange/rate/calculate',
+} as const
+
+export const BUS_EVENTS = {
+  LAST_UPDATE_TIMER_EXPIRED: 'LAST_UPDATE_TIMER_EXPIRED',
+  EXCHANGE_INFO_UPDATED: 'EXCHANGE_INFO_UPDATED',
+  AMOUNT_VALIDATION: 'AMOUNT_INVALID',
+} as const
