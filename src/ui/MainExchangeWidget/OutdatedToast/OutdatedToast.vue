@@ -24,14 +24,3 @@ const { outdated, reload, openSupport } = useOutdatedToast()
     />
   </UiToast>
 </template>
-
-<style scoped lang="scss">
-.main-exchange-widget-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: calc(560px + 16px * 2);
-  margin: auto;
-  padding: 90px 16px;
-}
-</style>

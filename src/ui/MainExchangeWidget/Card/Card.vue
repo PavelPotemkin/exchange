@@ -31,6 +31,7 @@ import { MainExchangeWidgetToInput } from '../ToInput'
 <style scoped lang="scss">
 .main-exchange-widget-card {
   width: 100%;
+  height: fit-content;
   max-width: 560px;
   display: flex;
   flex-direction: column;

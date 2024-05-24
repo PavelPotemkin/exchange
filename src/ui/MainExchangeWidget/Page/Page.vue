@@ -21,7 +21,6 @@ usePage()
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 90px 16px;
   min-height: 100vh;
 
