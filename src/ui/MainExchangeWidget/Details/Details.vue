@@ -31,7 +31,7 @@ const disabled = false
           class="main-exchage-widget-details__header-left-rate"
         >
           <span>
-            {{ `${exchange.from.amount} ${exchange.from.code}` }}
+            {{ exchange.from }}
           </span>
 
           <span>
@@ -39,7 +39,7 @@ const disabled = false
           </span>
 
           <span>
-            {{ `${exchange.to.amount} ${exchange.to.code}` }}
+            {{ exchange.to }}
           </span>
         </span>
       </div>
@@ -84,7 +84,7 @@ const disabled = false
 
         <span class="main-exchage-widget-details__list-item-value">
           <span>
-            {{ `${rate.from.amount} ${rate.from.code}` }}
+            {{ rate.from }}
           </span>
 
           <span>
@@ -92,7 +92,7 @@ const disabled = false
           </span>
 
           <span>
-            {{ `${rate.to.amount} ${rate.to.code}` }}
+            {{ rate.to }}
           </span>
         </span>
       </div>
@@ -103,7 +103,7 @@ const disabled = false
         </span>
 
         <span class="main-exchage-widget-details__list-item-value">
-          {{ `${comission.amount} ${comission.code}` }}
+          {{ comission.value }}
         </span>
       </div>
     </div>
